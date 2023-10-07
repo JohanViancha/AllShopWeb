@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import {
   FormControl,
@@ -13,9 +12,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-
-import { LoginCredentials, LoginForm } from './models/login.models';
 import { LoginService } from './services/login.service';
+import { LoginCredentials, LoginForm } from './models/login.models';
+import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
 
 @Component({
@@ -26,7 +25,6 @@ import { tap } from 'rxjs';
     MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
-    MatButtonModule,
     MatInputModule,
     ReactiveFormsModule,
     MatIconModule,
@@ -36,6 +34,7 @@ import { tap } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
   private loginService = inject(LoginService);
+  private router = inject(Router);
   user!: FormGroup<LoginForm>;
   hide = true;
 
@@ -51,16 +50,24 @@ export class LoginComponent implements OnInit {
       email: this.user.get('email')?.value,
       password: this.user.get('password')?.value,
     };
-    this.loginService.authenticateUser(loginCredentials).subscribe();
+    this.loginService
+      .authenticateUser(loginCredentials)
+      .pipe(tap(() => this.router.navigate(['/home'])))
+      .subscribe();
   }
 
   getErrorMessage() {
-    if (this.user.get('email')!.hasError('required')) {
-      return 'Debes ingresar un email';
+    if (
+      this.user.get('email')!.hasError('required') ||
+      this.user.get('password')!.hasError('required')
+    ) {
+      return 'Should enter value this field';
     }
 
-    return this.user.get('email')!.hasError('email')
-      ? 'El email es invalido'
-      : '';
+    return this.user.get('email')!.hasError('email') ? 'Email invalid' : '';
+  }
+
+  redirectCreate(){
+    this.router.navigate(['register'])
   }
 }

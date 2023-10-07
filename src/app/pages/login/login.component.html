@@ -1,21 +1,23 @@
 <div class="container-login">
   <mat-card class="login">
     <mat-card-header class="login-header">
-      <mat-card-title>Login</mat-card-title></mat-card-header
+      <mat-card-title>Login in to your Account</mat-card-title></mat-card-header
     >
     <mat-card-content>
       <mat-form-field>
-        <mat-label>Ingresa tu email</mat-label>
+        <mat-label>Enter email</mat-label>
+        <mat-icon matPrefix>email</mat-icon>
         <input
           matInput
           placeholder="uts@example.com"
           [formControl]="user.controls.email"
           required
         />
-        <mat-error *ngIf="user.get('email')">{{ getErrorMessage() }}</mat-error>
+        <mat-error *ngIf="user.get('email')?.invalid">{{ getErrorMessage() }}</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Ingresa tu contraseña</mat-label>
+        <mat-label>Enter password</mat-label>
+        <mat-icon matPrefix>password</mat-icon>
         <input
           matInput
           [type]="hide ? 'password' : 'text'"
@@ -31,10 +33,20 @@
         >
           <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
         </button>
+        <mat-error *ngIf="user.get('password')?.invalid">{{ getErrorMessage() }}</mat-error>
       </mat-form-field>
+      
+      <div class="options-advance">
+        <a mat-button (click)="redirectCreate()">Create user</a>
+        <a mat-button>Forgot password</a>
+      </div>
+        
+
+      
+      
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="authenticateUser()">Ingresar</button>
+      <button [disabled]="user.invalid" mat-raised-button color="primary" (click)="authenticateUser()">Login</button>
     </mat-card-actions>
   </mat-card>
 </div>

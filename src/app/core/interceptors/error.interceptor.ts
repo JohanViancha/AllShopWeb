@@ -4,23 +4,29 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpResponse,
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
 import {
+  alreadyExists,
   errorCode,
+  incompleteParameters,
   modalNotValid,
+  notVerified,
+  recordCreatedSuccessfully,
+  uncontrolled,
 } from '../../shared/components/modal/models/modal.constant';
 import { Modal } from 'src/app/shared/components/modal/models/modal.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
-import { ResponseHtpp } from '../models/response.model';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   private listError = new Map<number, Modal>([
     [errorCode.invalidCredentials, modalNotValid],
+    [errorCode.alreadyExists, alreadyExists],
+    [errorCode.incompleteParameters, incompleteParameters],
+    [errorCode.notVerified, notVerified]
   ]);
 
   constructor(public dialog: MatDialog){
@@ -33,8 +39,9 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError(({error}: HttpErrorResponse) => {
+        console.log(error)
         this.dialog.open(ModalComponent,{
-          data: this.listError.get(error.codeResponse)
+          data: this.listError.get(error.codeResponse) || uncontrolled
         })
         throw error;
       })
