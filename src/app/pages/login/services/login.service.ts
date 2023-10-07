@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { LoginCredentials } from '../models/login.models';
-import { URLAPI } from 'src/environments/environment.dev';
+import { environment } from 'src/environments/environment';
 import { ENDPOINT } from '../models/login.constants';
 import { Observable, catchError } from 'rxjs';
 
@@ -13,7 +13,7 @@ export class LoginService {
 
   authenticateUser(credentials: LoginCredentials): Observable<any> {
     return this.httpModule.post<LoginCredentials>(
-      `${URLAPI}${ENDPOINT.authenticateUser}`,
+      `${environment.URLAPI}${ENDPOINT.authenticateUser}`,
       credentials
     ).pipe(
       catchError((err)=>{
