@@ -1,0 +1,19 @@
+.container-login{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.login {
+  max-width: 500px;
+  margin: 30vh auto;
+
+  &-header{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+mat-form-field{
+  width: 100%;
+}
