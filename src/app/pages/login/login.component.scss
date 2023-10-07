@@ -10,8 +10,18 @@
 
   &-header{
     display: flex;
-    flex-direction: column;
+    margin: 1rem 0;
+    justify-content: center;
+    & mat-card-title{
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
   }
+}
+
+.options-advance{
+  display: flex;
+  justify-content: space-between;
 }
 
 mat-form-field{

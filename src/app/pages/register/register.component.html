@@ -1,1 +1,62 @@
-<p>register works!</p>
+<div class="container-register">
+  <mat-card class="register">
+    <mat-card-header class="register-header">
+      <mat-card-title>Register</mat-card-title></mat-card-header
+    >
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Enter name</mat-label>
+        <input
+          matInput
+          placeholder="Javier Ramirez"
+          [formControl]="user.controls.name"
+          required
+        />
+        <mat-error *ngIf="user.get('email')">{{ getErrorMessage() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Enter lastname</mat-label>
+        <input
+          matInput
+          placeholder="Javier Ramirez"
+          [formControl]="user.controls.lastname"fsd
+          required
+        />
+        <mat-error *ngIf="user.get('lastname')?.invalid">{{ getErrorMessage() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Enter email</mat-label>
+        <input
+          matInput
+          placeholder="uts@example.com"
+          [formControl]="user.controls.email"
+          required
+        />
+        <mat-error *ngIf="user.get('email')?.invalid">{{ getErrorMessage() }}</mat-error>
+        
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ingresa password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          [formControl]="user.controls.password"
+          required
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions class="login__actions">
+      <button mat-raised-button color="primary" [disabled]="user.invalid" (click)="registerUser()">Register</button>
+      <button mat-raised-button color="basic" (click)="returnLogin()">Return login</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
