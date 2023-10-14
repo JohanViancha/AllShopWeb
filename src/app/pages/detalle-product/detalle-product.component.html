@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 
 <div class="detail">
-  <mat-card>
+  <mat-card class="main">
     <mat-card-header>
       <mat-card-title>{{ product.title }}</mat-card-title>
       <mat-card-subtitle> 
@@ -27,18 +27,20 @@
       </mat-chip>
     </mat-chip-set>
 
-    
-  <mat-divider></mat-divider>
+
   <mat-card-footer>
-    <button mat-fab extended color="primary">
-      <mat-icon>shopping_cart</mat-icon>
-      Agregar el carrito
-    </button>
-    
-    <button mat-fab extended color="primary">
-      <mat-icon>credit_card</mat-icon>
-      Pagar
-    </button>
+    <div class="options-button">
+      <button mat-fab extended color="primary">
+        <mat-icon>shopping_cart</mat-icon>
+        Agregar el carrito
+      </button>
+      
+      <button mat-fab extended color="primary">
+        <mat-icon>credit_card</mat-icon>
+        Pagar
+      </button>
+    </div>
+  
   </mat-card-footer>
 
 

@@ -9,10 +9,23 @@
     margin: 3rem auto;
 
     & .price{
+        width: 60%;
         padding: 1rem 3rem;
+    }
+
+    & .main{
+        justify-content: space-between;
+        padding: 1rems;
     }
 }
 
 .chip{
     padding: 3rem;
+}
+
+.options-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
