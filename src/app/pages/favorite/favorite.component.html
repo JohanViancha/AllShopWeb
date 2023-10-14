@@ -1,0 +1,41 @@
+<app-nav></app-nav>
+
+<div class="favorite">
+  <section *ngIf="!isFavorites(); else notFoundFavorites">
+    <mat-card *ngFor="let item of favorites">
+      <mat-card-header>
+        <mat-card-title>{{ item.title }}</mat-card-title>
+        <mat-card-subtitle>{{ item.seller.nickname }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="favorite__content">
+        <img
+          class="image-product"
+          mat-card-image
+          [src]="item.thumbnail"
+          alt="Imagen del producto"
+        />
+        <div class="favorite-detail">
+          <span> $ {{ item.price | number : "1.0-0" }}</span>
+          <div>
+            <mat-chip-set class="example-chip">
+              <mat-chip
+                class="example-box"
+                *ngFor="let tag of item.tags"
+              >
+                {{ tag }}
+              </mat-chip>
+            </mat-chip-set>
+          </div>
+        </div>
+        <button mat-mini-fab color="warn"  (click)="deleteFavorite(item.id)">
+          <mat-icon class="icon-product">delete</mat-icon>
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>
+<ng-template #notFoundFavorites>
+  <mat-card>
+    <mat-card-content>No existe productos favoritos</mat-card-content>
+  </mat-card>
+</ng-template>

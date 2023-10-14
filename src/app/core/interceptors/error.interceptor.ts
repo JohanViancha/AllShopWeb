@@ -39,7 +39,6 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError(({error}: HttpErrorResponse) => {
-        console.log(error)
         this.dialog.open(ModalComponent,{
           data: this.listError.get(error.codeResponse) || uncontrolled
         })

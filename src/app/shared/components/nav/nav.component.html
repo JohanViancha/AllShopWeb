@@ -1,0 +1,21 @@
+<mat-toolbar class="toolbar-container" color="primary">
+    <section class="name">
+      <h1 (click)="goHome()">AllShop</h1>
+    </section>
+    <section class="favorite-menu-container" [matMenuTriggerFor]="menu">
+      <span>Favoritos</span>
+      <button mat-icon-button aria-label="Example icon-button with a menu">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu  #menu="matMenu">
+        <button mat-menu-item (click)="goFavorite()">
+          <mat-icon>grading</mat-icon>
+          <span>Ver favoritos</span>
+        </button>
+        <button mat-menu-item (click)="deleteFavorite()"> 
+          <mat-icon >delete_forever</mat-icon>
+          <span>Eliminar favoritos</span>
+        </button>
+      </mat-menu>
+    </section>
+  </mat-toolbar>

@@ -1,3 +1,29 @@
+<app-nav></app-nav>
 
-<img src="../../../assets/gif/giphy.gif" alt="">
-<h3>El HOME ESTÁ EN CONSTRUCCIÓN, SE ENTREGA EN EL PROXIMO SPRINT ...</h3>
+<section class="list-product">
+    <mat-card class="list-product__card" *ngFor="let item of listProducts">
+        <img class="image-product" mat-card-image [src]="item.thumbnail" alt="Imagen del producto">
+        <mat-card-content>
+          <p>
+            {{ item.title}}
+          </p>
+
+          <h2>
+          $  {{ item.price | number:'1.0-0'  }}
+          </h2>
+        </mat-card-content>
+        <mat-card-actions class="group-icons">
+          <button mat-button>
+            <mat-icon class="icon-product">add_shopping_cart</mat-icon>
+          </button>
+          <button mat-button (click)="addFavorite(item)">
+            <mat-icon class="icon-product">favorite</mat-icon>
+          </button>
+          
+        </mat-card-actions>
+        <mat-card-footer>
+          <button mat-flat-button color="primary" (click)="viewDetail(item)">Ver detalle</button>
+        </mat-card-footer>
+      </mat-card>
+
+</section>

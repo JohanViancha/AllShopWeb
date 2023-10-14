@@ -1,0 +1,53 @@
+<app-nav></app-nav>
+
+<div class="detail">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ product.title }}</mat-card-title>
+      <mat-card-subtitle> 
+        <a mat-button [href]="product.seller.permalink" target="_blank">
+          {{product.seller.nickname}}
+        </a>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <img
+        class="image-product"
+        mat-card-image
+        width="100px"
+        [src]="product.thumbnail"
+        alt="Imagen del producto"
+      />
+    </mat-card-content>
+    <mat-divider></mat-divider>
+
+    <mat-chip-set class="chip">
+      <mat-chip class="example-box" *ngFor="let tag of product.tags">
+        {{ tag }}
+      </mat-chip>
+    </mat-chip-set>
+
+    
+  <mat-divider></mat-divider>
+
+
+  </mat-card>
+
+
+
+  <mat-card class="price">
+    <mat-card-header>
+      <mat-card-title
+        ><h2>$ {{ product.price | number : "1.0-0" }}</h2></mat-card-title
+      >
+      <mat-card-subtitle> {{ product.seller.nickname }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let item of product.attributes">
+        <p>
+          {{ item.name }}: <span> <b>{{ item.value_name }} </b></span>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
