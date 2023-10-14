@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
-import { KEYSTORAGEFAVORITE } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-nav',
@@ -33,7 +32,4 @@ export class NavComponent {
     this.router.navigate(['/home']);
   }
 
-  deleteFavorite(){
-    localStorage.removeItem(KEYSTORAGEFAVORITE)
-  }
 }

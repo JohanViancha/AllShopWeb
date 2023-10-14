@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { NavComponent } from 'src/app/shared/components/nav/nav.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-detalle-product',
@@ -15,7 +16,8 @@ import { NavComponent } from 'src/app/shared/components/nav/nav.component';
     MatCardModule,
     MatDividerModule,
     MatChipsModule,
-    NavComponent
+    NavComponent,
+    MatIconModule
   ],
   styleUrls: ['./detalle-product.component.scss'],
 })
